@@ -1,0 +1,11 @@
+import 'babel-polyfill';
+import express from 'express';
+import logger from 'morgan';
+import issuesRouter from './routes/issues';
+var app = express();
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/issue', issuesRouter);
+app.listen(process.env.PORT || 9000);
+export default app;
