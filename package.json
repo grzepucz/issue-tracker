@@ -20,8 +20,8 @@
     "clean": "rimraf dist-server",
     "build": "npm-run-all clean transpile",
     "watch:dev": "nodemon",
-    "dev": "NODE_ENV=development npm-run-all build server",
-    "prod": "NODE_ENV=production npm-run-all build server"
+    "dev": "DATABASE_URL=mongodb://localhost/issue-tracker NODE_ENV=development npm-run-all build server",
+    "prod": "DATABASE_URL=mongodb://url.to.db.host/issue-tracker NODE_ENV=production npm-run-all build server"
   },
   "babel": {
     "presets": [
