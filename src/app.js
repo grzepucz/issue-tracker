@@ -8,8 +8,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-console.log(process.env.DATABASE_URL);
-
 mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost/issue-tracker", { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use('/issue', issuesRouter);
