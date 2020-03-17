@@ -8,7 +8,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost/schibsted", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost/issue-tracker", { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use('/issue', issuesRouter);
 app.listen(9000);
