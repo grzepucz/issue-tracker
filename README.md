@@ -1,6 +1,9 @@
 # issue-tracker
 Node.js backend for issue tracker
 
+# Requirements
+``MongoDB``
+
 ## installation
 ``` npm install ```
 
