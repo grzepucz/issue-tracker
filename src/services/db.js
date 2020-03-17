@@ -1,15 +1,14 @@
-import mongoose from 'mongoose';
 import Issue from '../model/issue';
 
 const STATUS_OPEN = 'open';
 const STATUS_PENDING = 'pending';
 const STATUS_CLOSE = 'close';
 
-const isRecordValid = (body) => {
+export const isRecordValid = (body) => {
     return body.title;
 };
 
-const validStatusChange = (current, updated) => {
+export const validStatusChange = (current, updated) => {
     if (current === STATUS_OPEN && updated === STATUS_CLOSE) {
         return false;
     }
@@ -48,7 +47,10 @@ export const getRecord = async (id) => {
         try {
             return await Issue.findById(id);
         } catch (error) {
-            return error;
+            return {
+                status: 404,
+                message: 'Not found',
+            };
         }
     }
 };

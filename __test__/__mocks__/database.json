@@ -1,0 +1,31 @@
+{
+  "validStatusChange": {
+    "statusOpen": "open",
+    "statusPending": "pending",
+    "statusClose": "close"
+  },
+  "crud": {
+    "issue": {
+      "title": "test",
+      "description": "test",
+      "status": "open"
+    },
+    "updatedIssue": {
+      "title": "updatedtest",
+      "description": "updatedtest",
+      "status": "pending"
+    },
+    "notFound": {
+      "status": 404,
+      "message": "Not found"
+    }
+  },
+  "isRecordValid": {
+    "valid": {
+      "title": "is required"
+    },
+    "invalid": {
+      "description": "only"
+    }
+  }
+}
