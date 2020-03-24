@@ -2,49 +2,53 @@ import * as dbHelper from '../services/db';
 import express from 'express';
 var router = express.Router();
 
+const NO_ID = 'No id passed.';
+const WRONG_BODY = 'Body is not fulfilled.';
+
 router.get('/', async function(req, res) {
-  await dbHelper.getAllRecords().then(response => res.send(response));
+    dbHelper.getAllRecords()
+      .then(response => res.status(200).send(response))
+      .catch(error => res.status(500).send(error));
 });
 
 router.get('/:id', async function (req, res) {
-  if (req.params.id) {
-    await dbHelper.getRecord(req.params.id).then(response => res.send(response));
-  } else {
-    res.send({
-      status: 400,
-      message: 'Wrong params',
-    });
-  }
+    if (!req.params.id) {
+        res.status(400).send({ message: NO_ID });
+    }
+
+    dbHelper.getRecord(req.params.id)
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(500).send(error));
 });
 
 router.post('/', async function(req, res) {
-  if (req.body) {
-    await dbHelper.addRecord(req.body).then(response => res.send(response));
-  } else {
-    res.send({
-      message: 'body is not fulfilled'
-    });
-  }
+    if (!req.body) {
+        res.status(400).send({ message: WRONG_BODY });
+    }
+
+    dbHelper.addRecord(req.body)
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(500).send(error));
 });
 
 router.delete('/:id', async function(req, res) {
-  if (req.body) {
-    await dbHelper.deleteRecord(req.params.id).then(response => res.send(response));
-  } else {
-    res.send({
-      message: 'No id passed'
-    });
-  }
+    if (!req.body) {
+      res.status(400).send({ message: NO_ID });
+    }
+
+    dbHelper.deleteRecord(req.params.id)
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(500).send(error));
 });
 
 router.put('/:id', async function(req, res) {
-  if (req.body) {
-    await dbHelper.updateRecord(req.params.id, req.body).then(response => res.send(response));
-  } else {
-    res.send({
-      message: 'No id passed'
-    });
-  }
+    if (!req.body) {
+      res.status(400).send({ message: NO_ID });
+    }
+
+    dbHelper.updateRecord(req.params.id, req.body)
+        .then(response => res.status(200).send(response))
+        .catch(error => res.status(500).send(error));
 });
 
 export default router;
